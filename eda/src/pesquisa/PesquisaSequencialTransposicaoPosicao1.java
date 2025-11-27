@@ -3,12 +3,18 @@ package pesquisa;
 public class PesquisaSequencialTransposicaoPosicao1 {
     public static void main(String[] args) {
         int[] array = {10, 20, 30, 40, 50};
-        int valor = 50;
+        int valor = 20;
+
+        System.out.print("Array antes da transposição: ");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
 
         int resultado = PesquisaSequencial(array, valor);
         if (resultado != -1) {
-            System.out.println("Valor encontrado na posição: " + resultado);
-            System.out.print("Array depois da transposição: ");
+            System.out.print(valor + " encontrado na posição: " + resultado);
+            System.out.print("\nArray depois da transposição: ");
             for (int num : array) {
                 System.out.print(num + " ");
             }

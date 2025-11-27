@@ -7,9 +7,15 @@ public class PesquisaSequencialTransposicaoVarios {
         int valor = 40;
         int posicoes = 2;
 
+        System.out.print("Array antes da transposição: ");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
         int resultado = PesquisaSequencial(array, valor, posicoes);
         if (resultado != -1) {
-            System.out.println("Valor encontrado e transposto.");
+            System.out.println(valor + " encontrado e transposto.");
             System.out.print("Array depois da transposição: ");
             for (int num : array) {
                 System.out.print(num + " ");
