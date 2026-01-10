@@ -1,10 +1,11 @@
-package listas.estatica;
+package listas.estatica.test;
 
+import listas.estatica.ListaEstatica;
 import listas.exceptions.ListaCheiaException;
 import listas.exceptions.ListaIndiceForaLimiteException;
 import listas.exceptions.ListaVaziaException;
 
-public class test {
+public class ListaEstaticaTest {
 
     public static void main(String[] args) {
 
