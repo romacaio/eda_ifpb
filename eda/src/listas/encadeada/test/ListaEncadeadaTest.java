@@ -1,6 +1,6 @@
 package listas.encadeada.test;
 
-import listas.encadeada.ListaEncadeada;
+import listas.encadeada.ListaEncadeadaComDescritor;
 import listas.exceptions.ListaIndiceForaLimiteException;
 import listas.exceptions.ListaVaziaException;
 
@@ -17,7 +17,7 @@ public class ListaEncadeadaTest {
     }
 
     public static void removerPorPosicao() {
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
         lista.inserirNoFinal(1);
         lista.inserirNoFinal(2);
         lista.inserirNoFinal(3);
@@ -40,7 +40,7 @@ public class ListaEncadeadaTest {
     }
 
     public static void removerFinal() {
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
         lista.inserirNoFinal(2);
         lista.inserirNoFinal(5);
         lista.inserirNoFinal(1);
@@ -62,7 +62,7 @@ public class ListaEncadeadaTest {
 
 
     public static void removerInicio() {
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
         lista.inserirNoFinal(2);
         lista.inserirNoFinal(5);
         lista.inserirNoFinal(1);
@@ -77,7 +77,7 @@ public class ListaEncadeadaTest {
     }
 
     public static void inserirNoInicio() {
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
         lista.inserirNoInicio(3);
         lista.inserirNoInicio(2);
         lista.inserirNoInicio(1);  // 1, 2, 3
@@ -91,7 +91,7 @@ public class ListaEncadeadaTest {
     }
 
     public static void inserirPorPosicao() {
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
         try {
             lista.inserirNoFinal(1);
             lista.inserirNoFinal(2);
@@ -109,7 +109,7 @@ public class ListaEncadeadaTest {
     public static void testesIniciais() {
         // inserir no final
 
-        ListaEncadeada lista = new ListaEncadeada();
+        ListaEncadeadaComDescritor lista = new ListaEncadeadaComDescritor();
 
         lista.inserirNoFinal(2);
         lista.inserirNoFinal(5);

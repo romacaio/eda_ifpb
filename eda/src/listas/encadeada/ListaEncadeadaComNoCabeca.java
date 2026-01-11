@@ -3,41 +3,44 @@ package listas.encadeada;
 import listas.exceptions.ListaIndiceForaLimiteException;
 import listas.exceptions.ListaVaziaException;
 
-public class ListaEncadeada {
+public class ListaEncadeadaComNoCabeca {
 
-    private No inicio;
+    private No cabeca;
     private No ultimo;
-    private int quantidade = 0;
+    private int quantidade;
 
     private final int NAO_ECONTRADO = -1;
 
+    public ListaEncadeadaComNoCabeca() {
+        this.cabeca = new No(null);
+        this.ultimo = null;
+        this.quantidade = 0;
+    }
+
 
     public void inserirNoFinal(Integer e) {
-        No no = new No(e);
+        No novoNo = new No(e);
 
         if (this.quantidade == 0) {
-            this.inicio = no;
+            this.cabeca.setProximo(novoNo);
 
         } else {
-            this.ultimo.setProximo(no);
+            this.ultimo.setProximo(novoNo);
         }
-        this.ultimo = no;
+        this.ultimo = novoNo;
         this.quantidade++;
     }
 
     public void inserirNoInicio(Integer e) {
+        No novoNo = new No(e);
+
         if (isVazia()) {
-            No no = new No(e);
-            this.inicio = no;
-            this.ultimo = no;
-
-        } else {
-            No no = new No(e, this.inicio);
-            this.inicio = no;
+            this.ultimo = novoNo;
         }
+        novoNo.setProximo(cabeca.getProximo());
+        this.cabeca.setProximo(novoNo);
 
-        this.quantidade++;
-
+        quantidade++;
     }
 
     public void inserir(Integer e, int posicao) throws ListaIndiceForaLimiteException, ListaVaziaException {
@@ -70,8 +73,9 @@ public class ListaEncadeada {
             throw new ListaVaziaException();
         }
 
-        int lixo = this.inicio.getDado();
-        this.inicio = inicio.getProximo();
+        No removido = this.cabeca.getProximo();
+
+        this.cabeca.setProximo(removido.getProximo());
 
         this.quantidade--;
 
@@ -79,7 +83,7 @@ public class ListaEncadeada {
             this.ultimo = null;
         }
 
-        return lixo;
+        return removido.getDado();
     }
 
     public int removerFinal() throws ListaVaziaException, ListaIndiceForaLimiteException {
@@ -105,7 +109,7 @@ public class ListaEncadeada {
             throw new ListaVaziaException();
         }
 
-        if (posicao < 0 || posicao > quantidade) {
+        if (posicao < 0 || posicao >= quantidade) {
             throw new ListaIndiceForaLimiteException();
         }
 
@@ -113,7 +117,7 @@ public class ListaEncadeada {
         if (posicao == quantidade - 1) {
             return removerFinal();
 
-        // início
+            // início
         } else if (posicao == 0) {
             return removerInicio();
         }
@@ -123,13 +127,13 @@ public class ListaEncadeada {
         No noAtual = noAnterior.getProximo();
         No proximoNo = noAtual.getProximo();
 
-        int lixo = noAtual.getDado();
+        int removido = noAtual.getDado();
 
         noAnterior.setProximo(proximoNo);
         noAtual.setProximo(null);
 
         quantidade--;
-        return lixo;
+        return removido;
 
     }
 
@@ -138,11 +142,11 @@ public class ListaEncadeada {
             throw new ListaVaziaException();
         }
 
-        if (posicao > this.quantidade || posicao < 0) {
+        if (posicao >= this.quantidade || posicao < 0) {
             throw new ListaIndiceForaLimiteException();
         }
 
-        No atual = this.inicio;
+        No atual = this.cabeca.getProximo();
         for (int i = 0; i < posicao; i++) {
             atual = atual.getProximo();
         }
@@ -155,7 +159,7 @@ public class ListaEncadeada {
     }
 
     public int busca(Integer e) {
-        No atual = this.inicio;
+        No atual = this.cabeca.getProximo();
         int posicao = 0;
 
         while (atual != null) {
@@ -175,11 +179,11 @@ public class ListaEncadeada {
         }
 
         if (quantidade == 1) {
-            System.out.println("[" + this.inicio.getDado() + "]");
+            System.out.println("[" + this.cabeca.getProximo().getDado() + "]");
             return;
         }
 
-        No atual = this.inicio;
+        No atual = this.cabeca.getProximo();
         System.out.print("[" + atual.getDado() + ",");
 
         for (int i = 1; i < this.quantidade - 1; i++) {
@@ -189,29 +193,12 @@ public class ListaEncadeada {
 
         System.out.print(atual.getProximo().getDado() + "]");
 
-
-        /*No atual = inicio;
-        System.out.print("[ " + atual.getDado() + ", ");
-        while (atual.getProximo() != null) {
-            atual = atual.getProximo();
-            System.out.print(atual.getDado() + ", ");
-        }
-        */
     }
 
     public void limpa() {
-
-        for (No atual = this.inicio; atual != null; ) {
-            No proximo = atual.getProximo();
-
-            atual.setDado(null);
-            atual.setProximo(null);
-            atual = proximo;
-        }
-
-        this.inicio = null;
+        this.cabeca = null;
         this.ultimo = null;
-        this.quantidade = 0;
+        quantidade = 0;
     }
 
 
