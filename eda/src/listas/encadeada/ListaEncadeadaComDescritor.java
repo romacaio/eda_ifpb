@@ -65,12 +65,12 @@ public class ListaEncadeadaComDescritor {
 
     }
 
-    public int removerInicio() throws ListaVaziaException {
+    public Integer removerInicio() throws ListaVaziaException {
         if (isVazia()) {
             throw new ListaVaziaException();
         }
 
-        int lixo = this.inicio.getDado();
+        Integer lixo = this.inicio.getDado();
         this.inicio = inicio.getProximo();
 
         this.quantidade--;
@@ -82,7 +82,7 @@ public class ListaEncadeadaComDescritor {
         return lixo;
     }
 
-    public int removerFinal() throws ListaVaziaException, ListaIndiceForaLimiteException {
+    public Integer removerFinal() throws ListaVaziaException, ListaIndiceForaLimiteException {
         if (isVazia()) {
             throw new ListaVaziaException();
         }
@@ -92,7 +92,8 @@ public class ListaEncadeadaComDescritor {
         }
 
         No penultimoNo = buscaNo(this.quantidade - 2);
-        int lixo = penultimoNo.getProximo().getDado();
+        Integer lixo = penultimoNo.getProximo().getDado();
+
         penultimoNo.setProximo(null);
         this.ultimo = penultimoNo;
 
@@ -100,12 +101,12 @@ public class ListaEncadeadaComDescritor {
         return lixo;
     }
 
-    public int remover(int posicao) throws ListaVaziaException, ListaIndiceForaLimiteException {
+    public Integer remover(int posicao) throws ListaVaziaException, ListaIndiceForaLimiteException {
         if (isVazia()) {
             throw new ListaVaziaException();
         }
 
-        if (posicao < 0 || posicao > quantidade) {
+        if (posicao < 0 || posicao >= quantidade) {
             throw new ListaIndiceForaLimiteException();
         }
 
@@ -123,7 +124,7 @@ public class ListaEncadeadaComDescritor {
         No noAtual = noAnterior.getProximo();
         No proximoNo = noAtual.getProximo();
 
-        int lixo = noAtual.getDado();
+        Integer lixo = noAtual.getDado();
 
         noAnterior.setProximo(proximoNo);
         noAtual.setProximo(null);
@@ -174,29 +175,20 @@ public class ListaEncadeadaComDescritor {
             throw new ListaVaziaException();
         }
 
-        if (quantidade == 1) {
-            System.out.println("[" + this.inicio.getDado() + "]");
-            return;
-        }
+        No atual = inicio;
+        System.out.print("[");
 
-        No atual = this.inicio;
-        System.out.print("[" + atual.getDado() + ",");
+        while (atual != null) {
+            System.out.print(atual.getDado());
 
-        for (int i = 1; i < this.quantidade - 1; i++) {
+            if (atual.getProximo() != null) {
+                System.out.print(", ");
+            }
+
             atual = atual.getProximo();
-            System.out.print(atual.getDado() + ",");
         }
 
-        System.out.print(atual.getProximo().getDado() + "]");
-
-
-        /*No atual = inicio;
-        System.out.print("[ " + atual.getDado() + ", ");
-        while (atual.getProximo() != null) {
-            atual = atual.getProximo();
-            System.out.print(atual.getDado() + ", ");
-        }
-        */
+        System.out.print("]");
     }
 
     public void limpa() {

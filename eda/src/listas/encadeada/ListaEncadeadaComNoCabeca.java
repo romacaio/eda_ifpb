@@ -68,7 +68,7 @@ public class ListaEncadeadaComNoCabeca {
 
     }
 
-    public int removerInicio() throws ListaVaziaException {
+    public Integer removerInicio() throws ListaVaziaException {
         if (isVazia()) {
             throw new ListaVaziaException();
         }
@@ -86,7 +86,8 @@ public class ListaEncadeadaComNoCabeca {
         return removido.getDado();
     }
 
-    public int removerFinal() throws ListaVaziaException, ListaIndiceForaLimiteException {
+    public Integer removerFinal() throws ListaVaziaException, ListaIndiceForaLimiteException {
+
         if (isVazia()) {
             throw new ListaVaziaException();
         }
@@ -97,6 +98,7 @@ public class ListaEncadeadaComNoCabeca {
 
         No penultimoNo = buscaNo(this.quantidade - 2);
         int lixo = penultimoNo.getProximo().getDado();
+
         penultimoNo.setProximo(null);
         this.ultimo = penultimoNo;
 
@@ -104,7 +106,7 @@ public class ListaEncadeadaComNoCabeca {
         return lixo;
     }
 
-    public int remover(int posicao) throws ListaVaziaException, ListaIndiceForaLimiteException {
+    public Integer remover(int posicao) throws ListaVaziaException, ListaIndiceForaLimiteException {
         if (isVazia()) {
             throw new ListaVaziaException();
         }
@@ -127,7 +129,7 @@ public class ListaEncadeadaComNoCabeca {
         No noAtual = noAnterior.getProximo();
         No proximoNo = noAtual.getProximo();
 
-        int removido = noAtual.getDado();
+        Integer removido = noAtual.getDado();
 
         noAnterior.setProximo(proximoNo);
         noAtual.setProximo(null);
@@ -178,21 +180,21 @@ public class ListaEncadeadaComNoCabeca {
             throw new ListaVaziaException();
         }
 
-        if (quantidade == 1) {
-            System.out.println("[" + this.cabeca.getProximo().getDado() + "]");
-            return;
-        }
 
         No atual = this.cabeca.getProximo();
-        System.out.print("[" + atual.getDado() + ",");
+        System.out.print("[");
 
-        for (int i = 1; i < this.quantidade - 1; i++) {
+        while (atual != null) {
+            System.out.print(atual.getDado());
+
+            if (atual.getProximo() != null) {
+                System.out.print(", ");
+            }
+
             atual = atual.getProximo();
-            System.out.print(atual.getDado() + ",");
         }
 
-        System.out.print(atual.getProximo().getDado() + "]");
-
+        System.out.println("]");
     }
 
     public void limpa() {
